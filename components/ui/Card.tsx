@@ -2,14 +2,16 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-    color?: "white" | "blue";
+    color?: "white" | "blue" | "pink" | "yellow";
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
     ({ className, color = "white", children, ...props }, ref) => {
         const bgColors = {
             white: "bg-white",
-            blue: "bg-blue-400",
+            blue: "bg-cyan-300",
+            pink: "bg-pink-400",
+            yellow: "bg-yellow-300",
         };
 
         return (
