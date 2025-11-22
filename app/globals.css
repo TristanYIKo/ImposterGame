@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #1a1a1a;
+  --background: #facc15;
+  /* yellow-400 */
   --foreground: #000000;
 }
 
@@ -11,10 +12,14 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
+  /* No scrollbars */
   display: flex;
   justify-content: center;
-  min-height: 100dvh;
+  align-items: center;
+  height: 100dvh;
+  width: 100vw;
+  margin: 0;
 }
 
 @layer utilities {

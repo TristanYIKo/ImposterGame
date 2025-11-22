@@ -22,14 +22,6 @@ export default function ActionPhase() {
             const playerIndex = players.findIndex((p) => p.id === startingPlayer);
             const segmentAngle = 360 / players.length;
 
-            // Calculate rotation to land on the player
-            // We want the player segment to be at the top (270deg or -90deg)
-            // Let's assume 0deg is 3 o'clock.
-            // Segment i starts at i * segmentAngle. Center is i * segmentAngle + segmentAngle/2.
-            // To bring center to -90deg:
-            // Rotation = -90 - (i * segmentAngle + segmentAngle/2)
-            // Add multiple spins (e.g., 5 * 360)
-
             const randomSpins = 5 + Math.floor(Math.random() * 3);
             const targetRotation = 360 * randomSpins - (playerIndex * segmentAngle + segmentAngle / 2) - 90;
 
@@ -45,15 +37,15 @@ export default function ActionPhase() {
     const colors = ["#fca5a5", "#93c5fd", "#86efac", "#fde047", "#d8b4fe", "#fdba74"];
 
     return (
-        <div className="flex flex-col items-center justify-center gap-8 w-full h-full">
-            <div className="text-center space-y-2">
-                <h1 className="text-4xl font-black uppercase">Who Starts?</h1>
-                <p className="text-xl font-bold">Spin the wheel to decide!</p>
+        <div className="flex flex-col items-center justify-center gap-6 w-full h-full py-2">
+            <div className="text-center space-y-1">
+                <h1 className="text-3xl font-black uppercase">Who Starts?</h1>
+                <p className="text-lg font-bold">Spin the wheel to decide!</p>
             </div>
 
-            <div className="relative w-72 h-72 md:w-80 md:h-80">
+            <div className="relative w-64 h-64">
                 {/* Pointer */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[40px] border-t-black drop-shadow-lg" />
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[30px] border-t-black drop-shadow-lg" />
 
                 {/* Wheel Container */}
                 <div className="w-full h-full rounded-full border-4 border-black shadow-neo bg-white overflow-hidden relative">
@@ -79,11 +71,11 @@ export default function ActionPhase() {
                             return (
                                 <div
                                     key={player.id}
-                                    className="absolute top-0 left-1/2 w-1 h-1/2 -ml-0.5 origin-bottom flex justify-center pt-6"
+                                    className="absolute top-0 left-1/2 w-1 h-1/2 -ml-0.5 origin-bottom flex justify-center pt-4"
                                     style={{ transform: `rotate(${rotation}deg)` }}
                                 >
                                     <span
-                                        className="font-black text-xl bg-white w-8 h-8 flex items-center justify-center border-2 border-black rounded-full shadow-sm"
+                                        className="font-black text-lg bg-white w-6 h-6 flex items-center justify-center border-2 border-black rounded-full shadow-sm"
                                         style={{ transform: `rotate(${-rotation}deg)` }}
                                     >
                                         {player.id}
@@ -100,23 +92,23 @@ export default function ActionPhase() {
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        className="text-center bg-white border-4 border-black p-4 rounded-2xl shadow-neo"
+                        className="text-center bg-white border-4 border-black p-3 rounded-2xl shadow-neo"
                     >
-                        <h2 className="text-2xl font-black">Player {startingPlayer}</h2>
-                        <p className="text-lg font-bold">starts the questioning!</p>
+                        <h2 className="text-xl font-black">Player {startingPlayer}</h2>
+                        <p className="text-base font-bold">starts the questioning!</p>
                     </motion.div>
                 )}
             </div>
 
-            <div className="flex flex-col gap-4 w-full mt-auto">
-                <Button onClick={handleSpin} disabled={isSpinning} className="w-full py-4 text-xl rounded-full">
+            <div className="flex flex-col gap-3 w-full mt-auto px-4">
+                <Button onClick={handleSpin} disabled={isSpinning} className="w-full py-3 text-lg rounded-full">
                     {isSpinning ? "SPINNING..." : "SPIN THE WHEEL"}
-                    <RotateCw className={`ml-2 w-6 h-6 ${isSpinning ? "animate-spin" : ""}`} />
+                    <RotateCw className={`ml-2 w-5 h-5 ${isSpinning ? "animate-spin" : ""}`} />
                 </Button>
 
-                <Button onClick={resetGame} variant="danger" className="w-full py-4 text-xl rounded-full">
+                <Button onClick={resetGame} variant="danger" className="w-full py-3 text-lg rounded-full">
                     NEW GAME
-                    <RefreshCw className="ml-2 w-6 h-6" />
+                    <RefreshCw className="ml-2 w-5 h-5" />
                 </Button>
             </div>
         </div>

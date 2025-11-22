@@ -15,22 +15,22 @@ export default function SetupPhase() {
     };
 
     return (
-        <div className="flex flex-col h-full w-full justify-between gap-6">
-            <div className="text-center space-y-2 mt-4">
-                <h1 className="text-5xl font-black uppercase tracking-tighter">
+        <div className="flex flex-col h-full w-full justify-center gap-4 py-2">
+            <div className="text-center space-y-1">
+                <h1 className="text-4xl font-black uppercase tracking-tighter">
                     The Imposter
                 </h1>
-                <p className="text-xl font-bold">Pass & Play Game</p>
+                <p className="text-lg font-bold">Pass & Play Game</p>
             </div>
 
-            <div className="flex-1 flex flex-col gap-6 overflow-y-auto pb-4">
+            <div className="flex flex-col gap-3 w-full">
                 {/* Player Count */}
-                <Card className="space-y-4 bg-white">
+                <Card className="space-y-2 bg-white rounded-3xl p-4">
                     <div className="flex justify-between items-center">
-                        <label className="font-bold text-lg flex items-center gap-2">
-                            <Users className="w-6 h-6" /> Players
+                        <label className="font-bold text-base flex items-center gap-2">
+                            <Users className="w-5 h-5" /> Players
                         </label>
-                        <span className="font-black text-2xl">{settings.playerCount}</span>
+                        <span className="font-black text-xl">{settings.playerCount}</span>
                     </div>
                     <input
                         type="range"
@@ -44,17 +44,17 @@ export default function SetupPhase() {
                                 imposterCount: Math.min(settings.imposterCount, Math.ceil(count / 2) - 1),
                             });
                         }}
-                        className="w-full h-4 bg-gray-200 rounded-full appearance-none cursor-pointer accent-black border-2 border-black"
+                        className="w-full h-5 bg-gray-200 rounded-full appearance-none cursor-pointer accent-black border-4 border-black"
                     />
                 </Card>
 
                 {/* Imposter Count */}
-                <Card className="space-y-4 bg-white">
+                <Card className="space-y-2 bg-white rounded-3xl p-4">
                     <div className="flex justify-between items-center">
-                        <label className="font-bold text-lg flex items-center gap-2">
-                            <UserX className="w-6 h-6" /> Imposters
+                        <label className="font-bold text-base flex items-center gap-2">
+                            <UserX className="w-5 h-5" /> Imposters
                         </label>
-                        <span className="font-black text-2xl">{settings.imposterCount}</span>
+                        <span className="font-black text-xl">{settings.imposterCount}</span>
                     </div>
                     <input
                         type="range"
@@ -64,22 +64,22 @@ export default function SetupPhase() {
                         onChange={(e) =>
                             setSettings({ imposterCount: parseInt(e.target.value) })
                         }
-                        className="w-full h-4 bg-gray-200 rounded-full appearance-none cursor-pointer accent-black border-2 border-black"
+                        className="w-full h-5 bg-gray-200 rounded-full appearance-none cursor-pointer accent-black border-4 border-black"
                     />
                 </Card>
 
                 {/* Category Selection */}
-                <div className="space-y-2">
-                    <h2 className="text-2xl font-black uppercase px-2">Category</h2>
-                    <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                    <h2 className="text-xl font-black uppercase px-2 text-center">Category</h2>
+                    <div className="grid grid-cols-2 gap-2">
                         {(Object.keys(CATEGORIES) as CategoryKey[]).map((cat) => (
                             <motion.button
                                 key={cat}
-                                whileHover={{ scale: 1.02 }}
+                                whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => handleCategorySelect(cat)}
                                 className={`
-                  p-4 font-bold text-lg border-4 border-black shadow-neo transition-colors rounded-2xl
+                  py-2 px-1 font-bold text-base border-4 border-black shadow-neo transition-colors rounded-2xl truncate
                   ${settings.category === cat
                                         ? "bg-blue-400 text-black"
                                         : "bg-white text-gray-500 hover:bg-gray-50"
@@ -93,11 +93,11 @@ export default function SetupPhase() {
                 </div>
             </div>
 
-            <div className="space-y-4 pt-4 border-t-4 border-black bg-yellow-300 z-10">
-                <div className="text-center font-bold text-lg border-2 border-black bg-white rounded-xl p-2 mx-4 shadow-[2px_2px_0px_0px_#000]">
+            <div className="space-y-3 pt-2 z-10 flex flex-col items-center">
+                <div className="text-center font-bold text-base border-4 border-black bg-white rounded-2xl p-2 px-4 shadow-neo w-fit">
                     {settings.playerCount} Players | {settings.imposterCount} Imposter{settings.imposterCount > 1 ? 's' : ''} | {settings.category}
                 </div>
-                <Button onClick={startGame} className="w-full text-2xl py-6 rounded-full">
+                <Button onClick={startGame} className="text-xl py-4 px-10 w-auto">
                     START GAME
                 </Button>
             </div>

@@ -22,7 +22,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(
-                    "px-8 py-4 font-bold text-lg border-4 border-black shadow-neo transition-all rounded-full active:shadow-none active:translate-x-[4px] active:translate-y-[4px]",
+                    "px-8 py-4 font-bold text-lg border-4 border-black shadow-neo transition-all rounded-full active:shadow-none active:translate-x-[4px] active:translate-y-[4px] w-auto",
                     variants[variant],
                     className
                 )}

@@ -10,7 +10,7 @@ export default function Home() {
   const { phase } = useGameStore();
 
   return (
-    <main className="w-full max-w-[420px] min-h-[100dvh] flex flex-col items-center justify-center p-6 bg-yellow-300 shadow-2xl relative overflow-hidden">
+    <main className="w-full max-w-[400px] h-full max-h-[100dvh] flex flex-col items-center justify-center p-4 relative overflow-visible">
       <AnimatePresence mode="wait">
         {phase === "setup" && (
           <motion.div
