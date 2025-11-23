@@ -4,7 +4,14 @@ import { useGameStore } from "@/hooks/useGameStore";
 import SetupPhase from "@/components/game/SetupPhase";
 import RevealPhase from "@/components/game/RevealPhase";
 import ActionPhase from "@/components/game/ActionPhase";
+import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
+
+// Dynamically import FirstPlayerSelection to avoid SSR issues with react-custom-roulette
+const FirstPlayerSelection = dynamic(
+  () => import("@/components/game/FirstPlayerSelection"),
+  { ssr: false }
+);
 
 export default function Home() {
   const { phase } = useGameStore();
@@ -34,6 +41,18 @@ export default function Home() {
             className="w-full"
           >
             <RevealPhase />
+          </motion.div>
+        )}
+        {phase === "firstPlayerSelection" && (
+          <motion.div
+            key="firstPlayerSelection"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+            className="w-full h-full"
+          >
+            <FirstPlayerSelection />
           </motion.div>
         )}
         {phase === "action" && (

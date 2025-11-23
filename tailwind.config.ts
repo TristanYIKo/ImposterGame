@@ -6,6 +6,11 @@ const config: Config = {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
+    safelist: [
+        'bg-blue-500',
+        'bg-blue-600',
+        'text-white',
+    ],
     theme: {
         extend: {
             boxShadow: {
@@ -18,5 +23,6 @@ const config: Config = {
         },
     },
     plugins: [],
-};
+} as any;
 export default config;
+

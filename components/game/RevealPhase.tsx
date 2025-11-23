@@ -28,7 +28,7 @@ export default function RevealPhase() {
     return (
         <div className="flex flex-col items-center justify-center h-full w-full relative gap-8">
             {/* Card Container - Big & Centered */}
-            <div className="relative w-[380px] h-[580px] perspective-1000 z-10">
+            <div className="relative w-[340px] h-[420px] perspective-1000 z-10">
                 <motion.div
                     className="w-full h-full relative preserve-3d"
                     initial={false}
@@ -38,24 +38,24 @@ export default function RevealPhase() {
                 >
                     {/* Front (Safety Screen) */}
                     <Card
-                        className="absolute inset-0 backface-hidden flex flex-col items-center justify-center gap-8 bg-white rounded-3xl border-4 border-black shadow-neo"
+                        className="absolute inset-0 backface-hidden flex flex-col items-center justify-center gap-6 bg-white rounded-3xl border-4 border-black shadow-neo"
                         style={{ backfaceVisibility: "hidden" }}
                     >
-                        <div className="text-center space-y-4">
-                            <h2 className="text-5xl font-black uppercase">
+                        <div className="text-center space-y-2">
+                            <h2 className="text-4xl font-black uppercase">
                                 Player {currentPlayer.id}
                             </h2>
-                            <p className="text-2xl font-bold">Tap to Reveal</p>
+                            <p className="text-xl font-bold">Tap to Reveal</p>
                         </div>
-                        <Eye className="w-32 h-32" />
-                        <Button onClick={handleReveal} className="w-auto px-10 py-5 text-2xl">
+                        <Eye className="w-24 h-24" />
+                        <Button onClick={handleReveal} className="w-auto px-8 py-4 text-xl">
                             REVEAL
                         </Button>
                     </Card>
 
                     {/* Back (Secret Screen) */}
                     <Card
-                        className={`absolute inset-0 backface-hidden flex flex-col items-center justify-center gap-8 rounded-3xl border-4 border-black ${currentPlayer.role === "imposter" ? "bg-pink-400 text-white" : "bg-cyan-300 text-black"
+                        className={`absolute inset-0 backface-hidden flex flex-col items-center justify-center gap-6 rounded-3xl border-4 border-black ${currentPlayer.role === "imposter" ? "bg-pink-400 text-white" : "bg-cyan-300 text-black"
                             }`}
                         style={{
                             backfaceVisibility: "hidden",
@@ -63,35 +63,35 @@ export default function RevealPhase() {
                             boxShadow: "-4px 4px 0px 0px #000", // Counteract rotation so shadow stays bottom-right visually
                         }}
                     >
-                        <div className="text-center space-y-6 w-full px-4">
-                            <h2 className="text-4xl font-black uppercase">
+                        <div className="text-center space-y-4 w-full px-4">
+                            <h2 className="text-3xl font-black uppercase">
                                 {currentPlayer.role === "imposter" ? "YOU ARE THE" : "SECRET WORD"}
                             </h2>
 
                             {currentPlayer.role === "imposter" ? (
                                 <div className="space-y-2">
-                                    <h1 className="text-6xl font-black uppercase tracking-tighter [-webkit-text-stroke:2px_black]">
+                                    <h1 className="text-5xl font-black uppercase tracking-tighter [-webkit-text-stroke:2px_black]">
                                         IMPOSTER
                                     </h1>
                                 </div>
                             ) : (
                                 <div className="space-y-2">
-                                    <p className="text-2xl font-bold uppercase opacity-80">
+                                    <p className="text-xl font-bold uppercase opacity-80">
                                         Category: {settings.category}
                                     </p>
-                                    <h1 className="text-5xl font-black uppercase tracking-tighter break-words [-webkit-text-stroke:2px_black] text-white">
+                                    <h1 className="text-4xl font-black uppercase tracking-tighter break-words [-webkit-text-stroke:2px_black] text-white">
                                         {secretWord}
                                     </h1>
                                 </div>
                             )}
                         </div>
 
-                        <EyeOff className="w-20 h-20" />
+                        <EyeOff className="w-16 h-16" />
 
                         <Button
                             onClick={handleNext}
                             variant={currentPlayer.role === "imposter" ? "secondary" : "primary"}
-                            className="w-auto px-10 py-5 text-2xl"
+                            className="w-auto px-8 py-4 text-xl"
                         >
                             GOT IT
                         </Button>

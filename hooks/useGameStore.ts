@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { CATEGORIES, CategoryKey } from '@/lib/data';
 
-export type Phase = 'setup' | 'reveal' | 'action';
+export type Phase = 'setup' | 'reveal' | 'firstPlayerSelection' | 'action';
 export type Role = 'innocent' | 'imposter';
 
 export interface Player {
@@ -24,6 +24,8 @@ interface GameState {
     setSettings: (settings: Partial<GameState['settings']>) => void;
     startGame: () => void;
     nextReveal: () => void;
+    setStartingPlayer: (playerId: number) => void;
+    startActionPhase: () => void;
     resetGame: () => void;
     spinWheel: () => void;
 }
@@ -83,8 +85,16 @@ export const useGameStore = create<GameState>((set, get) => ({
         if (currentRevealIndex < players.length - 1) {
             set({ currentRevealIndex: currentRevealIndex + 1 });
         } else {
-            set({ phase: 'action' });
+            set({ phase: 'firstPlayerSelection' });
         }
+    },
+
+    setStartingPlayer: (playerId: number) => {
+        set({ startingPlayer: playerId });
+    },
+
+    startActionPhase: () => {
+        set({ phase: 'action' });
     },
 
     spinWheel: () => {
