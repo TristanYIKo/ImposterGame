@@ -55,7 +55,7 @@ export default function RevealPhase() {
 
                     {/* Back (Secret Screen) */}
                     <Card
-                        className={`absolute inset-0 backface-hidden flex flex-col items-center justify-center gap-6 rounded-3xl border-4 border-black ${currentPlayer.role === "imposter" ? "bg-pink-400 text-white" : "bg-cyan-300 text-black"
+                        className={`absolute inset-0 backface-hidden flex flex-col items-center justify-center gap-8 rounded-3xl border-4 border-black p-8 ${currentPlayer.role === "imposter" ? "bg-pink-400 text-white" : "bg-cyan-300 text-black"
                             }`}
                         style={{
                             backfaceVisibility: "hidden",
@@ -63,35 +63,35 @@ export default function RevealPhase() {
                             boxShadow: "-4px 4px 0px 0px #000", // Counteract rotation so shadow stays bottom-right visually
                         }}
                     >
-                        <div className="text-center space-y-4 w-full px-4">
-                            <h2 className="text-3xl font-black uppercase">
+                        <div className="text-center space-y-6 w-full px-4">
+                            <h2 className="text-4xl font-black uppercase">
                                 {currentPlayer.role === "imposter" ? "YOU ARE THE" : "SECRET WORD"}
                             </h2>
 
                             {currentPlayer.role === "imposter" ? (
-                                <div className="space-y-2">
-                                    <h1 className="text-5xl font-black uppercase tracking-tighter [-webkit-text-stroke:2px_black]">
+                                <div className="space-y-3">
+                                    <h1 className="text-6xl font-black uppercase tracking-tighter [-webkit-text-stroke:2px_black]">
                                         IMPOSTER
                                     </h1>
                                 </div>
                             ) : (
-                                <div className="space-y-2">
-                                    <p className="text-xl font-bold uppercase opacity-80">
+                                <div className="space-y-3">
+                                    <p className="text-2xl font-bold uppercase opacity-80">
                                         Category: {settings.category}
                                     </p>
-                                    <h1 className="text-4xl font-black uppercase tracking-tighter break-words [-webkit-text-stroke:2px_black] text-white">
+                                    <h1 className="text-5xl font-black uppercase tracking-tighter break-words [-webkit-text-stroke:2px_black] text-white">
                                         {secretWord}
                                     </h1>
                                 </div>
                             )}
                         </div>
 
-                        <EyeOff className="w-16 h-16" />
+                        <EyeOff className="w-24 h-24" />
 
                         <Button
                             onClick={handleNext}
                             variant={currentPlayer.role === "imposter" ? "secondary" : "primary"}
-                            className="w-auto px-8 py-4 text-xl"
+                            className="w-auto px-12 py-6 text-2xl"
                         >
                             GOT IT
                         </Button>
